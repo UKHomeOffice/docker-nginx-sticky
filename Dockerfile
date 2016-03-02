@@ -3,7 +3,7 @@ FROM quay.io/ukhomeofficedigital/centos-base
 RUN rpm --rebuilddb && \
     yum install -y yum-utils epel-release && \
     yum-config-manager --enable cr && \
-    yum install -y gc gcc gcc-c++ pcre-devel zlib-devel make wget openssl-devel libxml2-devel libxslt-devel gd-devel perl-ExtUtils-Embed GeoIP-devel gperftools gperftools-devel libatomic_ops-devel perl-ExtUtils-Embed git
+    yum install -y bind-utils gc gcc gcc-c++ pcre-devel zlib-devel make wget openssl-devel libxml2-devel libxslt-devel gd-devel perl-ExtUtils-Embed GeoIP-devel gperftools gperftools-devel libatomic_ops-devel perl-ExtUtils-Embed git
 
 ENV VERSION 1.9.9
 RUN curl -o nginx.tar.gz http://nginx.org/download/nginx-${VERSION}.tar.gz && \
@@ -26,4 +26,4 @@ COPY gen-config.sh /gen-config.sh
 COPY loop.sh /loop.sh
 
 ENTRYPOINT ["/entry-point.sh"]
-CMD ["/loop.sh]
+CMD ["/loop.sh"]
