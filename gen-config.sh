@@ -2,7 +2,7 @@
 
 set -u
 set -e
-
+: ${PORT:=8000}
 : ${DOMAIN:=api.cluster.local}
 BACKENDS=$(dig ${DOMAIN} +short | sort |  xargs -I {} echo "        server {}:443")
 
@@ -38,8 +38,8 @@ $BACKENDS
     }
 
     server {
-        listen       ${PORT:-8000} default_server;
-        listen       [::]:${PORT:-8000} default_server;
+        listen       ${PORT} default_server;
+        listen       [::]:${PORT} default_server;
         server_name  _;
  
         location / {
