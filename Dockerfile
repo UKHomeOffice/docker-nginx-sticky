@@ -22,6 +22,8 @@ RUN ln -s /dev/stderr /var/log/nginx/error.log && \
     mkdir -p /usr/share/nginx/html
 
 COPY entry-point.sh /entry-point.sh
+COPY gen-config.sh /gen-config.sh
+COPY loop.sh /loop.sh
 
 ENTRYPOINT ["/entry-point.sh"]
-CMD ["/usr/sbin/nginx", "-g", "daemon off;"]
+CMD ["/loop.sh]
