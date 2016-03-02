@@ -62,13 +62,6 @@ $BACKENDS
             proxy_set_header X-Forwarded-Proto \$scheme;
             proxy_pass https://backend;
         }
-        
-        location /health {
-
-            return 200 'ok';
-            access_log off;
-            add_header Content-Type text/plain;
-        }
     }
 }
 EOF
