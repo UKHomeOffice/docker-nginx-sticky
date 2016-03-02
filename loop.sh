@@ -3,7 +3,7 @@
 set -u
 set -e
 
-/usr/sbin/nginx -g "daemon off;" &
+/usr/sbin/nginx -g 'daemon off;' &
 
 while true
 do
