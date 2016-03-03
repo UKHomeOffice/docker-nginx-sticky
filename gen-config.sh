@@ -14,7 +14,6 @@ cat <<- EOF > file
 user nginx;
 worker_processes auto;
 error_log /var/log/nginx/error.log;
-pid /run/nginx.pid;
 
 events {
     worker_connections 1024;
@@ -70,4 +69,3 @@ $BACKENDS
 }
 EOF
 
-cmp --silent /etc/nginx/nginx.conf file || /bin/cp -rf file /etc/nginx/nginx.conf && /usr/sbin/nginx -s reload
