@@ -6,6 +6,9 @@ set -e
 : ${DOMAIN:=api.${ENVIRONMENT}.svc.cluster.local}
 BACKENDS=$(dig ${DOMAIN} +short | sort |  xargs -I {} echo "        server {}:443")
 
+if [[ -z $BACKENDS ]]; then
+BACKENDS="        server 127.0.0.1:443"
+
 cat <<- EOF > file
 user nginx;
 worker_processes auto;
