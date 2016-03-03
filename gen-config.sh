@@ -40,6 +40,10 @@ http {
 $BACKENDS
     }
 
+    upstream local {
+        server 127.0.0.1:443
+    }
+
     server {
         listen       ${PORT} default_server;
         listen       [::]:${PORT} default_server;
@@ -64,6 +68,16 @@ $BACKENDS
             proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto \$scheme;
             proxy_pass https://backend;
+        }
+        location /health/local {
+
+            proxy_ssl_verify off;
+            proxy_redirect     off;
+            proxy_set_header Host \$host;
+            proxy_set_header X-Real-IP \$remote_addr;
+            proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+            proxy_set_header X-Forwarded-Proto \$scheme;
+            proxy_pass https://local;
         }
     }
 }
