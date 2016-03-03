@@ -8,4 +8,5 @@ set -e
 while true
 do
     /gen-config.sh
+    sleep 10
 done;
