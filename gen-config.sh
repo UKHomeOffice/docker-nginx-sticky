@@ -3,7 +3,7 @@
 set -u
 set -e
 : ${PORT:=8000}
-: ${DOMAIN:=api.cluster.local}
+: ${DOMAIN:=api.${ENVIRONMENT}.svc.cluster.local}
 BACKENDS=$(dig ${DOMAIN} +short | sort |  xargs -I {} echo "        server {}:443")
 
 cat <<- EOF > file
