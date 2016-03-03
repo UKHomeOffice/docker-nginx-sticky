@@ -41,7 +41,7 @@ $BACKENDS
     }
 
     upstream local {
-        server 127.0.0.1:443
+        server 127.0.0.1:443;
     }
 
     server {
