@@ -7,7 +7,8 @@ set -e
 BACKENDS=$(dig ${DOMAIN} +short | sort |  xargs -I {} echo "        server {}:443")
 
 if [[ -z $BACKENDS ]]; then
-BACKENDS="        server 127.0.0.1:443"
+    BACKENDS="        server 127.0.0.1:443"
+fi
 
 cat <<- EOF > file
 user nginx;
