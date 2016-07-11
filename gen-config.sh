@@ -57,6 +57,8 @@ $BACKENDS
             proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;     
             proxy_set_header X-Forwarded-Proto \$scheme;
             proxy_pass https://backend;
+            underscores_in_headers on;
+            proxy_pass_request_headers on;
         }
         
         location /irc_entry {
@@ -68,6 +70,8 @@ $BACKENDS
             proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto \$scheme;
             proxy_pass https://backend;
+            underscores_in_headers on;
+            proxy_pass_request_headers on;
         }
         location /health/local {
 
@@ -78,6 +82,8 @@ $BACKENDS
             proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto \$scheme;
             proxy_pass https://local;
+            underscores_in_headers on;
+            proxy_pass_request_headers on;
         }
     }
 }
