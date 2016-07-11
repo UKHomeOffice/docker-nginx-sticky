@@ -48,6 +48,7 @@ $BACKENDS
         listen       ${PORT} default_server;
         listen       [::]:${PORT} default_server;
         server_name  _;
+        underscores_in_headers on;
  
         location / {
             proxy_ssl_verify off;
@@ -57,6 +58,7 @@ $BACKENDS
             proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;     
             proxy_set_header X-Forwarded-Proto \$scheme;
             proxy_pass https://backend;
+            proxy_pass_request_headers on;
         }
         
         location /irc_entry {
@@ -68,6 +70,7 @@ $BACKENDS
             proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto \$scheme;
             proxy_pass https://backend;
+            proxy_pass_request_headers on;
         }
         location /health/local {
 
@@ -78,6 +81,7 @@ $BACKENDS
             proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
             proxy_set_header X-Forwarded-Proto \$scheme;
             proxy_pass https://local;
+            proxy_pass_request_headers on;
         }
     }
 }
