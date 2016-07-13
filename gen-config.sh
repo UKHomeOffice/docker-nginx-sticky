@@ -9,7 +9,7 @@ set -e
 BACKENDS=$(dig ${DOMAIN} +short | sort |  xargs -I {} echo "        server {}:${POD_PORT};")
 
 if [[ -z $BACKENDS ]]; then
-    BACKENDS="        server 127.0.0.1:443;"
+    BACKENDS="        server 127.0.0.1:${POD_PORT};"
 fi
 
 if [[ "$POD_HTTPS" == "true" ]]; then
